@@ -1,12 +1,5 @@
-import { Link } from "expo-router"
 import React from "react"
-import {
-  ImageBackground,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native"
+import { ImageBackground, StyleSheet, Text, View } from "react-native"
 
 const HomeScreen = () => {
   return (
@@ -17,11 +10,6 @@ const HomeScreen = () => {
         style={styles.image}
       >
         <Text style={styles.text}>Coffee Shop</Text>
-        <Link href="/explore" style={{ marginHorizontal: "auto" }} asChild>
-          <Pressable>
-            <Text>Explore</Text>
-          </Pressable>
-        </Link>
       </ImageBackground>
     </View>
   )
@@ -47,13 +35,5 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textAlign: "center",
     backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  button: {},
-  buttonText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "bold",
-    textAlign: "center",
-    padding: 4,
   },
 })
