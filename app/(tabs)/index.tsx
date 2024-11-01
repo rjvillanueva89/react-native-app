@@ -1,5 +1,6 @@
+import { Link } from "expo-router"
 import React from "react"
-import { ImageBackground, Text, View } from "react-native"
+import { ImageBackground, Pressable, Text, View } from "react-native"
 
 const HomeScreen = () => {
   return (
@@ -12,7 +13,13 @@ const HomeScreen = () => {
         <Text className="text-white text-4xl font-bold py-4 bg-black/50 text-center">
           Coffee Shop
         </Text>
-        <Text className="text-white">Explore</Text>
+        <Link href="/contact-us" className="mx-auto mt-4" asChild>
+          <Pressable>
+            <Text className="p-4 bg-black/75 rounded-xl text-white">
+              Contact Us
+            </Text>
+          </Pressable>
+        </Link>
       </ImageBackground>
     </View>
   )
