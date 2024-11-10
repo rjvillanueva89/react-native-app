@@ -1,7 +1,5 @@
-import ParallaxScrollView from "@/components/ParallaxScrollView"
 import { ThemedText } from "@/components/ThemedText"
-import Ionicons from "@expo/vector-icons/Ionicons"
-import { FlatList, Image, Text, View } from "react-native"
+import { FlatList, Image, SafeAreaView, Text, View } from "react-native"
 
 type Person = {
   id: number
@@ -164,35 +162,28 @@ const DUMMY_DATA: Person[] = [
 ]
 
 const ListViewScreen = () => {
+  const sortedData = DUMMY_DATA.sort((a, b) => a.name.localeCompare(b.name))
+
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: "#d0d0d0", dark: "#353636" }}
-      headerImage={
-        <Ionicons
-          size={310}
-          name="list"
-          className="absolute -bottom-[90px] -left-[35px]"
-          style={{ color: "#808080" }}
-        />
-      }
-    >
-      <List />
-    </ParallaxScrollView>
+    <SafeAreaView className="mt-6">
+      <FlatList
+        data={sortedData}
+        renderItem={({ item }) => <Item key={item.id} data={item} />}
+        ListHeaderComponent={
+          <ThemedText type="title" className="py-4 border-b">
+            List View
+          </ThemedText>
+        }
+        ItemSeparatorComponent={() => (
+          <View className="border-b border-dashed border-gray-300" />
+        )}
+        className="px-8"
+      />
+    </SafeAreaView>
   )
 }
 
 export default ListViewScreen
-
-const List = () => {
-  const sortedData = DUMMY_DATA.sort((a, b) => a.name.localeCompare(b.name))
-  return (
-    <FlatList
-      data={sortedData}
-      renderItem={({ item, index }) => <Item key={index} data={item} />}
-      ListHeaderComponent={<ThemedText type="title">List View</ThemedText>}
-    />
-  )
-}
 
 interface ItemProps {
   data: Person
@@ -200,7 +191,7 @@ interface ItemProps {
 
 const Item = ({ data }: ItemProps) => {
   return (
-    <View className="py-4 flex flex-row items-center gap-8 border-b border-dashed border-gray-300">
+    <View className="py-4 flex flex-row items-center gap-8">
       <Image source={{ uri: data.image }} className="size-20 rounded-full" />
       <View className="flex-1">
         <ThemedText type="defaultSemiBold">{data.name}</ThemedText>
