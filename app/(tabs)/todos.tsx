@@ -1,4 +1,5 @@
 import { TodoForm } from "@/components/todos/todo-form"
+import { cn } from "@/lib/utils"
 import { Ionicons } from "@expo/vector-icons"
 import { useState } from "react"
 import { FlatList, Pressable, Text, View } from "react-native"
@@ -49,7 +50,11 @@ const TodoList = ({ items, remove }: TodoListProps) => {
           <View className="size-10 bg-black/75 items-center justify-center flex rounded-full">
             <Text className="text-white font-bold">#{item.id + 1}</Text>
           </View>
-          <Text className="text-lg grow">{item.title}</Text>
+          <Text
+            className={cn("text-lg grow", item.completed ?? "line-through")}
+          >
+            {item.title}
+          </Text>
           <Pressable onPress={() => remove(item.id)}>
             <Ionicons name="trash" size={20} />
           </Pressable>

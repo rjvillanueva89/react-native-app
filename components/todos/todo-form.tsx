@@ -21,7 +21,7 @@ export const TodoForm = ({ onSubmit }: Props) => {
         placeholder="Add new todo item..."
         className="border px-4 py-2 grow"
       />
-      <Button title="Add" onPress={handlePress} color="#333" />
+      <Button title="Add" onPress={handlePress} color="#333" disabled={!text} />
     </View>
   )
 }
