@@ -50,6 +50,18 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="todos"
+        options={{
+          title: "Todos",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "checkbox" : "checkbox-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
     </Tabs>
   )
 }

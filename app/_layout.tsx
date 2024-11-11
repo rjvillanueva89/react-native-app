@@ -8,6 +8,7 @@ import { useFonts } from "expo-font"
 import { Stack } from "expo-router"
 import * as SplashScreen from "expo-splash-screen"
 import { useEffect } from "react"
+import { SafeAreaProvider } from "react-native-safe-area-context"
 import "./global.css"
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -31,12 +32,14 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="(screens)" />
-        <Stack.Screen name="contact-us" options={{ title: "Contact Us" }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
+      <SafeAreaProvider>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+          <Stack.Screen name="(screens)" />
+          <Stack.Screen name="contact-us" options={{ title: "Contact Us" }} />
+          <Stack.Screen name="+not-found" />
+        </Stack>
+      </SafeAreaProvider>
     </ThemeProvider>
   )
 }

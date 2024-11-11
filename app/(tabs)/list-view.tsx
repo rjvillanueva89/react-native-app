@@ -1,5 +1,6 @@
 import { ThemedText } from "@/components/ThemedText"
-import { FlatList, Image, SafeAreaView, Text, View } from "react-native"
+import { FlatList, Image, Text, View } from "react-native"
+import { SafeAreaView } from "react-native-safe-area-context"
 
 type Person = {
   id: number
@@ -165,7 +166,7 @@ const ListViewScreen = () => {
   const sortedData = DUMMY_DATA.sort((a, b) => a.name.localeCompare(b.name))
 
   return (
-    <SafeAreaView className="mt-6">
+    <SafeAreaView className="flex-1">
       <FlatList
         data={sortedData}
         renderItem={({ item }) => <Item key={item.id} data={item} />}
@@ -175,7 +176,7 @@ const ListViewScreen = () => {
           </ThemedText>
         }
         ItemSeparatorComponent={() => (
-          <View className="border-b border-dashed border-gray-300" />
+          <View className="border-b border-black/10" />
         )}
         className="px-8"
       />
@@ -191,7 +192,7 @@ interface ItemProps {
 
 const Item = ({ data }: ItemProps) => {
   return (
-    <View className="py-4 flex flex-row items-center gap-8">
+    <View className="py-4 flex-row items-center gap-8">
       <Image source={{ uri: data.image }} className="size-20 rounded-full" />
       <View className="flex-1">
         <ThemedText type="defaultSemiBold">{data.name}</ThemedText>
